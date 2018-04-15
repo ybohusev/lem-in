@@ -28,6 +28,7 @@ typedef struct s_nodes
 	char 	*name;
 	int		x;
 	int		y;
+	int		amount_links;
 	int		is_funk_room; /*0 - usual room, 1 - start, 2 - end*/
 	struct s_nodes	*next;
 	struct s_nodes	**linked_nodes;
@@ -38,5 +39,8 @@ typedef struct s_graph
 	t_links	*links;
 	t_nodes	*nodes;
 }				t_graph;
+
+t_graph	read_data(void);
+void	link_nodes(t_graph graph);
 
 #endif
