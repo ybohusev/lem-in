@@ -35,6 +35,11 @@ static	void	link_one_node(t_nodes *node, t_links *links, t_nodes *all_nodes)
 			node->linked_nodes[count] = find_node(links->name2, node, all_nodes);
 			count++;
 		}
+		else if (!ft_strcmp(node->name, links->name2))
+		{
+			node->linked_nodes[count] = find_node(links->name1, node, all_nodes);
+			count++;
+		}
 		links = links->next;
 	}	
 }
@@ -46,11 +51,12 @@ static	void	count_links(t_nodes *node, t_links *links, t_nodes *all_nodes)
 	tmp = links;
 	while (tmp)
 	{
-		if (!ft_strcmp(node->name, tmp->name1))
+		if (!ft_strcmp(node->name, tmp->name1) || !ft_strcmp(node->name, tmp->name2))
 			node->amount_links++;
 		tmp = tmp->next;
 	}
-	node->linked_nodes = (t_nodes**)malloc(sizeof(t_nodes*) * node->amount_links);
+	node->linked_nodes = (t_nodes**)malloc(sizeof(t_nodes*) * node->amount_links + 1);
+	node->linked_nodes[node->amount_links] = NULL;
 	link_one_node(node, links, all_nodes);
 }
 
@@ -65,16 +71,5 @@ extern	void	link_nodes(t_graph graph)
 		graph.nodes = graph.nodes->next;
 	}
 	graph.nodes = nodes;
-
-	while (graph.nodes->is_funk_room != 1)
-		graph.nodes = graph.nodes->next;
-	printf("%s\n", graph.nodes->linked_nodes[0]->name);
-	graph.nodes = graph.nodes->linked_nodes[0];
-	printf("%s\n", graph.nodes->linked_nodes[0]->name);
-	graph.nodes = graph.nodes->linked_nodes[0];
-	printf("%s\n", graph.nodes->linked_nodes[0]->name);
-	graph.nodes = graph.nodes->linked_nodes[0];
-	printf("%s\n", graph.nodes->linked_nodes[0]->name);
-
 	return ;
 }
