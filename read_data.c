@@ -26,6 +26,10 @@ static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode)
 	nod_tmp->y = ft_atoi(tmp[2]);
 	nod_tmp->amount_links = 0;
 	nod_tmp->is_funk_room = mode;
+	if (mode == 1)
+		nod_tmp->path = 0;
+	else
+		nod_tmp->path = 2147483647;
 	nod_tmp->next = NULL;
 	nod_tmp->linked_nodes = NULL;
 	if (nodes == NULL)

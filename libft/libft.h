@@ -87,7 +87,6 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
-int					ft_sqrt(int nb);
 char				*ft_itoa_base(uintmax_t n, int base);
 int					ft_putwchar(unsigned int a);
 int					ft_count_octets(unsigned int a);
@@ -100,5 +99,9 @@ wchar_t				*ft_wstrsub(wchar_t const *s, unsigned int start,
 wchar_t				*ft_wstrnew(size_t size);
 wchar_t				*ft_wstrjoin(wchar_t const *s1, wchar_t const *s2);
 wchar_t				*ft_wstrset(wchar_t *b, int c, size_t n);
+
+int					ft_mod(int x);
+int					ft_sqrt(int nb);
+double				ft_dsqrt(int nb);
 
 #endif

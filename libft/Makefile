@@ -87,6 +87,8 @@ SRC += ft_wstrnew.c
 SRC += ft_wstrset.c
 SRC += ft_wstrjoin.c
 SRC += get_next_line.c
+SRC += ft_mod.c
+SRC += ft_dsqrt.c
 
 all: $(NAME)
 

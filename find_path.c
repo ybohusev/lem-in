@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 16:17:20 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/04/14 16:17:21 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/04/17 16:04:10 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/04/17 16:04:11 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int		main(int argc, char const **argv)
+t_path	*find_path(t_graph graph)
 {
-	t_graph	graph;
 	t_path	*path;
 
-	graph = read_data();
-	link_nodes(graph);
-	find_len(graph.links, graph.nodes);
-	path = find_path(graph);
-	return (0);
+	while (graph.nodes)
+	{
+		
+	}
+	return (path);
 }

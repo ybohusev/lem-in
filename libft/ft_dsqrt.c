@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   ft_dsqrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 16:17:20 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/04/14 16:17:21 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/04/17 14:36:24 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/04/17 14:36:25 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "libft.h"
 
-int		main(int argc, char const **argv)
+double		ft_dsqrt(int nb)
 {
-	t_graph	graph;
-	t_path	*path;
+	double	x;
+	double	y;
 
-	graph = read_data();
-	link_nodes(graph);
-	find_len(graph.links, graph.nodes);
-	path = find_path(graph);
-	return (0);
+	if ((x = ft_sqrt(nb)) != 0)
+		return (x);
+	x = 0.5 * (1 + (nb / 1));
+	y = x;
+	x = 0.5 * (x + (nb / x));
+	while ((y - x) > 0)
+	{
+		y = x;
+		x = 0.5 * (x + (nb / x));
+	}
+	return (x);
 }
