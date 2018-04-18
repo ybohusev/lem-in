@@ -15,11 +15,7 @@
 int		main(int argc, char const **argv)
 {
 	t_graph	graph;
-	t_path	*path;
 
 	graph = read_data();
-	link_nodes(graph);
-	find_len(graph.links, graph.nodes);
-	path = find_path(graph);
 	return (0);
 }
