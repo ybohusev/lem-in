@@ -16,6 +16,10 @@
 # include "libft.h"
 # include <stdio.h>
 
+# define WHITE 0
+# define GRAY 1
+# define BLACK 2
+
 typedef struct s_links
 {
 	char 	*name1;
@@ -26,9 +30,15 @@ typedef struct s_links
 typedef struct s_nodes
 {
 	char 	*name;
+	int		ants;
+	int		x;
+	int		y;
+	int		color;
+	int		weight;
 	int		is_funk_room; /*0 - usual room, 1 - start, 2 - end*/
 	struct s_nodes	*next;
-	struct s_nodes	*linked_nodes;
+	int		amount_links;
+	struct s_nodes	**linked_nodes;
 }				t_nodes;
 
 typedef struct s_graph
@@ -37,7 +47,19 @@ typedef struct s_graph
 	t_nodes	*nodes;
 }				t_graph;
 
+typedef struct s_queue
+{
+	t_nodes	*curr;
+	struct s_queue	*next;
+}				t_queue;
+
 t_graph	read_data(void);
+
+
 void	link_nodes(t_graph graph);
+
+
+void	bfs(t_nodes *nodes);
+
 
 #endif

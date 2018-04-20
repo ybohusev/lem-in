@@ -22,9 +22,14 @@ static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode)
 	tmp = ft_strsplit(line, ' ');
 	nod_tmp = (t_nodes*)malloc(sizeof(t_nodes));
 	nod_tmp->name = ft_strdup(tmp[0]);
+	nod_tmp->color = WHITE;
+	nod_tmp->weight = 2147483647;
+	nod_tmp->x = ft_atoi(tmp[1]);
+	nod_tmp->y = ft_atoi(tmp[2]);
 	nod_tmp->is_funk_room = mode;
 	nod_tmp->next = NULL;
 	nod_tmp->linked_nodes = NULL;
+	nod_tmp->amount_links = 0;
 	if (nodes == NULL)
 	{
 		nodes = nod_tmp;

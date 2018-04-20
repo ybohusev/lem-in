@@ -17,5 +17,7 @@ int		main(int argc, char const **argv)
 	t_graph	graph;
 
 	graph = read_data();
+	link_nodes(graph);
+	bfs(graph.nodes);
 	return (0);
 }
