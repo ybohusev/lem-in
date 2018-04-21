@@ -18,40 +18,28 @@ C = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-LIBFT = ./libft
+LIBFT = ./libft/
 
 LIB = ./libft/libft.a
 
-TMP = ./temporary
-
-INCLUDES = -I ./libft
-
-INCLUDES += -I ./libft
-
 SRC = 
 
-SRC += bfs.c
 SRC += lem-in.c
+SRC += bfs.c
 SRC += link_nodes.c
 SRC += read_data.c
-
-OBJS = $(addprefix $(TMP)/,$(SRC:.c=.o))
+SRC += parse.c
+SRC += validation.c
+SRC += is_link.c
 
 all: get_lib $(NAME)
 
 get_lib:
 	@make -C $(LIBFT)
 
-$(NAME): $(OBJS)
-	@$(C) $(FLAGS) -o $(NAME) $(TMP) $(LIB) -I $(INCLUDES)
-
-$(TMP)/%.o: $(SRC)
-	@mkdir -p $(TMP)
-	@$(C) $(FLAGS) -c -I $(INCLUDES) -o $@ -c $<
-
-
+$(NAME):
+	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(LIB) -I $(LIBFT) 
 clean:
-	@rm -rf $(TMP)
 	@make clean -C $(LIBFT)
 
 fclean: clean

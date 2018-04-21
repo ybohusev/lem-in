@@ -12,7 +12,7 @@
 
 #include "lem-in.h"
 
-static	t_nodes	*find_node(char *name, t_nodes *nodes, t_nodes *all_nodes)
+static	t_nodes	*find_node(char *name, t_nodes *all_nodes)
 {
 	while (all_nodes)
 	{
@@ -32,12 +32,12 @@ static	void	link_one_node(t_nodes *node, t_links *links, t_nodes *all_nodes)
 	{
 		if (!ft_strcmp(node->name, links->name1))
 		{
-			node->linked_nodes[count] = find_node(links->name2, node, all_nodes);
+			node->linked_nodes[count] = find_node(links->name2, all_nodes);
 			count++;
 		}
 		else if (!ft_strcmp(node->name, links->name2))
 		{
-			node->linked_nodes[count] = find_node(links->name1, node, all_nodes);
+			node->linked_nodes[count] = find_node(links->name1, all_nodes);
 			count++;
 		}
 		links = links->next;

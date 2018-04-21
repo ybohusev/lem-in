@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   is_link.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 16:17:20 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/04/14 16:17:21 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/04/21 17:23:34 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/04/21 17:23:37 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int		main()
+extern	int	is_link(char *str)
 {
-	// t_graph	graph;
-	t_data	*data;
+	int		hyphen;
+	int		space;
 
-	data = read_data();
-	validation(data);
-	// graph = parse(data);
-	// link_nodes(graph);
-	// bfs(graph.nodes);
+	hyphen = 0;
+	space = 0;
+	while (*str)
+	{
+		if (*str == ' ')
+			space++;
+		if(*str == '-')
+			hyphen++;
+		str++;
+	}
+	if (hyphen && !space)
+		return (1);
 	return (0);
 }

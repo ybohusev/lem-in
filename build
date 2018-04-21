@@ -1,1 +1,0 @@
-gcc -o lem-in lem-in.c read_data.c link_nodes.c bfs.c ./libft/libft.a -I libft

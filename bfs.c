@@ -46,7 +46,7 @@ static	void	del_fqueue(t_queue **queue)
 	(*queue) = tmp;
 }
 
-static	void	see_queue(t_nodes *nodes, t_queue **queue)
+static	void	see_queue(t_queue **queue)
 {
 	int		count;
 
@@ -73,7 +73,7 @@ extern	void	bfs(t_nodes *nodes)
 	queue = init_queue(nodes);
 	while (queue)
 	{
-		see_queue(nodes, &queue);
+		see_queue(&queue);
 	}
 	return ;
 }

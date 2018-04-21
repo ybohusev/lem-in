@@ -13,12 +13,18 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# include "libft.h"
+# include "./libft/libft.h"
 # include <stdio.h>
 
 # define WHITE 0
 # define GRAY 1
 # define BLACK 2
+
+typedef struct s_data
+{
+	char 	*str;
+	struct s_data	*next;
+}				t_data;
 
 typedef struct s_links
 {
@@ -53,7 +59,11 @@ typedef struct s_queue
 	struct s_queue	*next;
 }				t_queue;
 
-t_graph	read_data(void);
+t_data	*read_data(void);
+void	validation(t_data *data);
+int		is_link(char *str);
+
+t_graph	parse(t_data *data);
 
 
 void	link_nodes(t_graph graph);
