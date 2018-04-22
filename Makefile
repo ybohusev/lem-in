@@ -31,6 +31,8 @@ SRC += read_data.c
 SRC += parse.c
 SRC += validation.c
 SRC += is_link.c
+SRC += exeptions.c
+SRC += del_data.c
 
 all: get_lib $(NAME)
 

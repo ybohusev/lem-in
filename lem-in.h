@@ -20,6 +20,13 @@
 # define GRAY 1
 # define BLACK 2
 
+# define NO_ANTS 1
+# define EMPTY_LINE 2
+# define NO_DATA 3
+# define INVALID_ROOMS 4
+# define INVALID_START 5
+# define INVALID_END 6
+
 typedef struct s_data
 {
 	char 	*str;
@@ -60,7 +67,8 @@ typedef struct s_queue
 }				t_queue;
 
 t_data	*read_data(void);
-void	validation(t_data *data);
+int		validation(t_data *data);
+void	exeptions(int err);
 int		is_link(char *str);
 
 t_graph	parse(t_data *data);
@@ -71,5 +79,6 @@ void	link_nodes(t_graph graph);
 
 void	bfs(t_nodes *nodes);
 
+void	del_data(t_data *data);
 
 #endif

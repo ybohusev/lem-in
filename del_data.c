@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.c                                           :+:      :+:    :+:   */
+/*   del_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/14 16:17:20 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/04/14 16:17:21 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/04/22 16:32:23 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/04/22 16:32:24 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-int		main()
+extern	void	del_data(t_data *data)
 {
-	// t_graph	graph;
-	t_data	*data;
-	int		err;
-
-	err = 0;
-	data = read_data();
-	if ((err = validation(data)))
-		exeptions(err);
-	// graph = parse(data);
-	// link_nodes(graph);
-	// bfs(graph.nodes);
-	// system("leaks lem-in");
-	return (0);
+	if (data->next)
+		del_data(data->next);
+	if (data->str)
+		free(data->str);
+	free(data);
 }
