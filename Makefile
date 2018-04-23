@@ -33,6 +33,9 @@ SRC += validation.c
 SRC += is_link.c
 SRC += exeptions.c
 SRC += del_data.c
+SRC += is_valid_room.c
+SRC += del_table.c
+SRC += is_valid_link.c
 
 all: get_lib $(NAME)
 

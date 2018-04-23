@@ -22,9 +22,14 @@ int		main()
 	data = read_data();
 	if ((err = validation(data)))
 		exeptions(err);
+	while (data)
+	{
+		printf("%s\n", data->str);
+		data = data->next;
+	}
 	// graph = parse(data);
 	// link_nodes(graph);
 	// bfs(graph.nodes);
-	// system("leaks lem-in");
+	system("leaks lem-in");
 	return (0);
 }

@@ -26,6 +26,17 @@
 # define INVALID_ROOMS 4
 # define INVALID_START 5
 # define INVALID_END 6
+# define NO_ROOMS 7
+# define INVALID_NAME 8
+# define INVALID_COORDS 9
+# define NO_LINKS 10
+# define INVALID_LINK 11
+
+typedef struct s_table
+{
+	char 	*name;
+	struct s_table	*next;
+}				t_table;
 
 typedef struct s_data
 {
@@ -69,6 +80,8 @@ typedef struct s_queue
 t_data	*read_data(void);
 int		validation(t_data *data);
 void	exeptions(int err);
+int		is_valid_room(char *str, t_table **table);
+int		is_valid_link(t_data *data, t_table *table);
 int		is_link(char *str);
 
 t_graph	parse(t_data *data);
@@ -80,5 +93,6 @@ void	link_nodes(t_graph graph);
 void	bfs(t_nodes *nodes);
 
 void	del_data(t_data *data);
+void	del_table(t_table *table);
 
 #endif

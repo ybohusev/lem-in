@@ -31,70 +31,60 @@ static	int		is_ants(t_data **data)
 	return (0);
 }
 
-static	int		is_rooms(t_data **data)
+static	int		is_rooms(t_data **data, t_table **table)
 {
 	int		rooms;
 	int		start;
 	int		end;
+	int		code;
 
 	rooms = 0;
 	start = 0;
 	end = 0;
-	while (data && !is_link(data->str))
+	code = 0;
+	while (*data && !is_link((*data)->str))
 	{
-		if (!ft_strcmp(data->str, "##start"))
+		if (!ft_strcmp((*data)->str, "##start"))
 			start++;
-		if (!ft_strcmp(data->str, "##end"))
+		else if (!ft_strcmp((*data)->str, "##end"))
 			end++;
-		rooms++;
-		data = data->next;
+		else if ((*data)->str[0] != '#' && !(code = is_valid_room((*data)->str, table)))
+			rooms++;
+		else if ((*data)->str[0] != '#')
+			return (code);
+		*data = (*data)->next;
 	}
-	if (rooms == 0)
-	{
-		ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 2 rooms!");
-		ft_putstr("\tYour count of rooms: \033[33m\"");
-		ft_putnbr(rooms);
-		ft_putendl("\"\033[37m");
-		exit(0);
-	}
+	if (rooms == 0 || rooms == 1)
+		return (NO_ROOMS);
 	if (end == 0 || end > 1)
-	{
-		ft_putendl("\033[31mERROR:\033[37m ant farm must has one and only one end room!");
-		ft_putstr("\tYour count of end room: \033[33m\"");
-		ft_putnbr(end);
-		ft_putendl("\"\033[37m");
-		exit(0);
-	}
+		return (INVALID_END);
 	if (start == 0 || start > 1)
-	{
-		ft_putendl("\033[31mERROR:\033[37m ant farm must has one and only one start room!");
-		ft_putstr("\tYour count of start room: \033[33m\"");
-		ft_putnbr(start);
-		ft_putendl("\"\033[37m");
-		exit(0);
-	}
-	return (data);
+		return (INVALID_START);
+	return (0);
 }
 
-// static	void	is_links(t_data *data)
-// {
-// 	int		links;
+static	int		is_links(t_data *data, t_table *table)
+{
+	int		links;
+	char	hash;
 
-// 	links = 0;
-// 	while (data)
-// 	{
-// 		links++;
-// 		data = data->next;
-// 	}
-// 	if (links == 0)
-// 	{
-// 		ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 1 links!");
-// 		ft_putstr("\tYour count of links: \033[33m\"");
-// 		ft_putnbr(links);
-// 		ft_putendl("\"\033[37m");
-// 		exit(0);
-// 	}
-// }
+	links = 0;
+	while (data)
+	{
+		hash = data->str[0];
+		if (hash != '#' && !is_valid_link(data, table))
+			links++;
+		else if (hash != '#')
+		{
+			exeptions(INVALID_LINK);
+			break ;
+		}
+		data = data->next;
+	}
+	if (links == 0)
+		return (NO_LINKS);
+	return (0);
+}
 
 static	int		is_data_empty(t_data *data)
 {
@@ -106,13 +96,19 @@ static	int		is_data_empty(t_data *data)
 extern	int		validation(t_data *data)
 {
 	int		err;
+	t_table	*table;
 
 	err = 0;
+	table = NULL;
 	if ((err = is_data_empty(data)))
 		return (err);
 	if ((err = is_ants(&data)))
 		return (err);
-	if ((err = is_rooms(&data)));
-	// is_links(data);
+	if ((err = is_rooms(&data, &table)))
+		return (err);
+	if ((err = is_links(data, table)))
+		return (err);
+	if (table)
+		del_table(table);
 	return (0);
 }

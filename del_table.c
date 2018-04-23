@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_link.c                                          :+:      :+:    :+:   */
+/*   del_table.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybohusev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/21 17:23:34 by ybohusev          #+#    #+#             */
-/*   Updated: 2018/04/21 17:23:37 by ybohusev         ###   ########.fr       */
+/*   Created: 2018/04/23 14:30:31 by ybohusev          #+#    #+#             */
+/*   Updated: 2018/04/23 14:30:32 by ybohusev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 
-extern	int	is_link(char *str)
+extern	void	del_table(t_table *table)
 {
-	int		hyphen;
-	int		space;
-
-	hyphen = 0;
-	space = 0;
-	while (*str)
+	if (!table)
+		return ;
+	if (table->next)
+		del_table(table->next);
+	if (table->name)
 	{
-		if (*str == ' ')
-			space++;
-		if(*str == '-')
-			hyphen++;
-		str++;
+		free(table->name);
+		table->name = NULL;
 	}
-	if (hyphen == 1 && !space)
-		return (1);
-	return (0);
+	free(table);
+	table = NULL;
 }
