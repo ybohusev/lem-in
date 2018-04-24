@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+   /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   del_data.c                                         :+:      :+:    :+:   */
@@ -14,9 +14,14 @@
 
 extern	void	del_data(t_data *data)
 {
+	if (!data)
+		return ;
 	if (data->next)
 		del_data(data->next);
 	if (data->str)
+	{
 		free(data->str);
-	free(data);
+		data->str = NULL;
+	}
+	data = NULL;
 }

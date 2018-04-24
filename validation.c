@@ -67,8 +67,10 @@ static	int		is_links(t_data *data, t_table *table)
 {
 	int		links;
 	char	hash;
+	int		err;
 
 	links = 0;
+	err = 0;
 	while (data)
 	{
 		hash = data->str[0];
@@ -76,13 +78,16 @@ static	int		is_links(t_data *data, t_table *table)
 			links++;
 		else if (hash != '#')
 		{
-			exeptions(INVALID_LINK);
+			err = INVALID_LINK;
 			break ;
 		}
 		data = data->next;
 	}
+	del_table(table);
 	if (links == 0)
 		return (NO_LINKS);
+	else if (err == INVALID_LINK)
+		return (err);
 	return (0);
 }
 
@@ -108,7 +113,5 @@ extern	int		validation(t_data *data)
 		return (err);
 	if ((err = is_links(data, table)))
 		return (err);
-	if (table)
-		del_table(table);
 	return (0);
 }

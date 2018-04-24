@@ -12,7 +12,7 @@
 
 #include "lem-in.h"
 
-static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode)
+static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode, int ants)
 {
 	char	**tmp;
 	t_nodes	*nod_tmp;
@@ -24,6 +24,10 @@ static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode)
 	nod_tmp->name = ft_strdup(tmp[0]);
 	nod_tmp->color = WHITE;
 	nod_tmp->weight = 2147483647;
+	if (mode == 1)
+		nod_tmp->ants = ants;
+	else
+		nod_tmp->ants = 0;
 	nod_tmp->x = ft_atoi(tmp[1]);
 	nod_tmp->y = ft_atoi(tmp[2]);
 	nod_tmp->is_funk_room = mode;
@@ -66,13 +70,16 @@ static	t_links	*fill_links(char *line, t_links *links)
 
 extern	t_graph	parse(t_data *data)
 {
-	t_nodes	*nodes;
-	t_links *links;
 	t_graph	graph;
 	int		mode;
+	int		ants;
 
-	nodes = NULL;
-	links = NULL;
+	graph.nodes = NULL;
+	graph.links = NULL;
+	if (!data)
+		return (graph);
+	ants = ft_atoi(data->str);
+	data = data->next;
 	while (data)
 	{
 		if (!ft_strcmp(data->str, "##start"))
@@ -81,14 +88,12 @@ extern	t_graph	parse(t_data *data)
 			mode = 2;
 		if (data->str[0] != '#' && !ft_strchr(data->str, '-'))
 		{
-			nodes = fill_nodes(data->str, nodes, mode);
+			graph.nodes = fill_nodes(data->str, graph.nodes, mode, ants);
 			mode = 0;
 		}
 		else if (data->str[0] != '#' && ft_strchr(data->str, '-'))
-			links = fill_links(data->str, links);
+			graph.links = fill_links(data->str, graph.links);
 		data = data->next;
 	}
-	graph.nodes = nodes;
-	graph.links = links;
 	return (graph);
 }

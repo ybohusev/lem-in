@@ -50,20 +50,20 @@ extern	int		is_valid_link(t_data *data, t_table *table)
 
 	if (data->str == 0 || !is_link(data->str))
 	{
-		del_table(table);
+		del_data(data);
 		return (INVALID_LINK);
 	}
 	tmp = ft_strsplit(data->str, '-');
 	if (!tmp[0] || !tmp[1])
 	{
-		del_table(table);
+		del_data(data);
+		free_st_st(tmp);
 		return (INVALID_LINK);
 	}
 	if (check_name(tmp[0], table) || check_name(tmp[1], table))
 	{
-		data = NULL;
+		del_data(data);
 		free_st_st(tmp);
-		del_table(table);
 		return (INVALID_NAME);
 	}
 	free_st_st(tmp);

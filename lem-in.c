@@ -12,9 +12,21 @@
 
 #include "lem-in.h"
 
+static	t_data	*clr_data(t_data *data)
+{
+	t_data	*tmp;
+
+	tmp = data;
+	while (data->next->str)
+		data = data->next;
+	free(data->next);	
+	data->next = NULL;
+	return (tmp);
+}
+
 int		main()
 {
-	// t_graph	graph;
+	t_graph	graph;
 	t_data	*data;
 	int		err;
 
@@ -22,14 +34,17 @@ int		main()
 	data = read_data();
 	if ((err = validation(data)))
 		exeptions(err);
-	while (data)
+	if (err == INVALID_LINK)
+		data = clr_data(data);
+	graph = parse(data);
+	link_nodes(graph);
+	bfs(graph.nodes);
+	while (graph.nodes)
 	{
-		printf("%s\n", data->str);
-		data = data->next;
+		printf("NAME %s\n", graph.nodes->name);
+		printf("  %d\n", graph.nodes->color);
+		graph.nodes = graph.nodes->next;
 	}
-	// graph = parse(data);
-	// link_nodes(graph);
-	// bfs(graph.nodes);
-	system("leaks lem-in");
+	// system("leaks lem-in");
 	return (0);
 }

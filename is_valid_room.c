@@ -95,10 +95,17 @@ extern	int		is_valid_room(char *str, t_table **table)
 	char	**tmp;
 
 	if (*str == 0)
+	{
+		del_table(*table);
 		return (EMPTY_LINE);
+	}
 	tmp = ft_strsplit(str, ' ');
 	if (!tmp[1] || ! tmp[2])
+	{
+		free_st_st(tmp);
+		del_table(*table);
 		return (INVALID_COORDS);
+	}
 	if (check_name(tmp[0], *table) || check_coord(tmp[1], tmp[2]))
 	{
 		free_st_st(tmp);

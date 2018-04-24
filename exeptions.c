@@ -65,7 +65,7 @@ static	void	invalid_coords(void)
 
 static	void	no_links(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 1 links!");
+	ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 1 link!");
 	exit(0);
 }
 
