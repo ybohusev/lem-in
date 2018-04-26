@@ -36,6 +36,8 @@ SRC += del_data.c
 SRC += is_valid_room.c
 SRC += del_table.c
 SRC += is_valid_link.c
+SRC += get_path.c
+SRC += display_path.c
 
 all: get_lib $(NAME)
 

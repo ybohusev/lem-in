@@ -31,12 +31,20 @@
 # define INVALID_COORDS 9
 # define NO_LINKS 10
 # define INVALID_LINK 11
+# define NO_PATH 12
 
 typedef struct s_table
 {
 	char 	*name;
 	struct s_table	*next;
 }				t_table;
+
+typedef struct s_path
+{
+	char 	*name;
+	int		ants;
+	struct s_path	*next;
+}				t_path;
 
 typedef struct s_data
 {
@@ -85,12 +93,10 @@ int		is_valid_link(t_data *data, t_table *table);
 int		is_link(char *str);
 
 t_graph	parse(t_data *data);
-
-
 void	link_nodes(t_graph graph);
-
-
 void	bfs(t_nodes *nodes);
+int		get_path(t_nodes *nodes, t_path **path);
+void	display_path(t_path *path, t_data *data);
 
 void	del_data(t_data *data);
 void	del_table(t_table *table);

@@ -29,8 +29,10 @@ int		main()
 	t_graph	graph;
 	t_data	*data;
 	int		err;
+	t_path	*path;
 
 	err = 0;
+	path = NULL;
 	data = read_data();
 	if ((err = validation(data)))
 		exeptions(err);
@@ -39,12 +41,9 @@ int		main()
 	graph = parse(data);
 	link_nodes(graph);
 	bfs(graph.nodes);
-	while (graph.nodes)
-	{
-		printf("NAME %s\n", graph.nodes->name);
-		printf("  %d\n", graph.nodes->color);
-		graph.nodes = graph.nodes->next;
-	}
+	if ((err = get_path(graph.nodes, &path)))
+		exeptions(err);
+	display_path(path, data);
 	// system("leaks lem-in");
 	return (0);
 }

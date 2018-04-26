@@ -35,19 +35,19 @@ static	void	no_ants(void)
 
 static	void	no_rooms(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 2 rooms!");
+	ft_putendl("\033[31mERROR:\033[37m ant's farm must has at least 2 rooms!");
 	exit(0);
 }
 
 static	void	invalid_end(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant farm must has one and only one end room!");
+	ft_putendl("\033[31mERROR:\033[37m ant's farm must has one and only one end room!");
 	exit(0);
 }
 
 static	void	invalid_start(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant farm must has one and only one start room!");
+	ft_putendl("\033[31mERROR:\033[37m ant's farm must has one and only one start room!");
 	exit(0);
 }
 
@@ -65,7 +65,7 @@ static	void	invalid_coords(void)
 
 static	void	no_links(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant farm must has at least 1 link!");
+	ft_putendl("\033[31mERROR:\033[37m ant's farm must has at least 1 link!");
 	exit(0);
 }
 
@@ -73,6 +73,12 @@ static	void	invalid_link(void)
 {
 	ft_putendl("\033[34mWARNING:\033[37m invalid link definition!");
 	ft_putendl("current and the following lines will be ignored");
+}
+
+static	void	no_path(void)
+{
+	ft_putendl("\033[31mERROR:\033[37m ant's farm has no path from start to end!");
+	exit(0);
 }
 
 extern	void	exeptions(int err)
@@ -97,4 +103,6 @@ extern	void	exeptions(int err)
 		no_links();
 	else if (err == INVALID_LINK)
 		invalid_link();
+	else if (err == NO_PATH)
+		no_path();
 }
