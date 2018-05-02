@@ -38,6 +38,8 @@ SRC += del_table.c
 SRC += is_valid_link.c
 SRC += get_path.c
 SRC += display_path.c
+SRC += del_graph.c
+SRC += del_path.c
 
 all: get_lib $(NAME)
 

@@ -83,7 +83,7 @@ static	int		is_links(t_data *data, t_table *table)
 		}
 		data = data->next;
 	}
-	del_table(table);
+	// del_table(table);
 	if (links == 0)
 		return (NO_LINKS);
 	else if (err == INVALID_LINK)

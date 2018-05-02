@@ -21,7 +21,7 @@ static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode, int ants)
 	mov = nodes;
 	tmp = ft_strsplit(line, ' ');
 	nod_tmp = (t_nodes*)malloc(sizeof(t_nodes));
-	nod_tmp->name = ft_strdup(tmp[0]);
+	nod_tmp->name = tmp[0];
 	nod_tmp->color = WHITE;
 	nod_tmp->weight = 2147483647;
 	if (mode == 1)
@@ -34,6 +34,9 @@ static	t_nodes	*fill_nodes(char *line, t_nodes *nodes, int mode, int ants)
 	nod_tmp->next = NULL;
 	nod_tmp->linked_nodes = NULL;
 	nod_tmp->amount_links = 0;
+	free(tmp[1]);
+	free(tmp[2]);
+	free(tmp);
 	if (nodes == NULL)
 	{
 		nodes = nod_tmp;
@@ -54,9 +57,10 @@ static	t_links	*fill_links(char *line, t_links *links)
 	mov = links;
 	tmp = ft_strsplit(line, '-');
 	links_tmp = (t_links*)malloc(sizeof(t_links));
-	links_tmp->name1 = ft_strdup(tmp[0]);
-	links_tmp->name2 = ft_strdup(tmp[1]);
+	links_tmp->name1 = tmp[0];
+	links_tmp->name2 = tmp[1];
 	links_tmp->next = NULL;
+	free(tmp);
 	if (links == NULL)
 	{
 		links = links_tmp;

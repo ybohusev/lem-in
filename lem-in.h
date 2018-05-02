@@ -101,5 +101,7 @@ void	display_path(t_path *path, t_data *data);
 
 void	del_data(t_data *data);
 void	del_table(t_table *table);
+void	del_graph(t_graph graph);
+void	del_path(t_path *path);
 
 #endif
