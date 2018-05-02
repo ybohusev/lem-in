@@ -29,16 +29,10 @@ static	void	free_st_st(char **str)
 
 static	int		check_name(char *x, t_table *table)
 {
-	int		m;
-
-	m = 0;
 	while (table)
 	{
 		if (!ft_strcmp(x, table->name))
-		{
-			m = 1;
 			return (0);
-		}
 		table = table->next;
 	}
 	return (INVALID_LINK);

@@ -44,6 +44,7 @@ typedef struct s_path
 	char 	*name;
 	int		ants;
 	struct s_path	*next;
+	struct s_path	*prev;
 }				t_path;
 
 typedef struct s_data

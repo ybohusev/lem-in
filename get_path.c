@@ -25,11 +25,13 @@ static	t_path	*add_room(t_path *path, char *name, int ants)
 	if (!path)
 	{
 		path = tmp;
+		path->prev = NULL;
 		return (path);
 	}
 	while (path->next)
 		path = path->next;
 	path->next = tmp;
+	path->next->prev = path;
 	return (ret);
 }
 
@@ -80,8 +82,6 @@ extern	int		get_path(t_nodes *nodes, t_path **path)
 		nodes = nodes->next;
 	if (nodes->color == WHITE || nodes->color == GRAY)
 		return (NO_PATH);
-	// else
-	// 	*path = add_room(*path, nodes->name, nodes->ants);
 	shortest_path(nodes, path);
 	return (0);
 }
