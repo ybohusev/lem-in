@@ -16,39 +16,50 @@ NAME = lem-in
 
 C = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS += -Wall -Wextra -Werror
 
 LIBFT = ./libft/
-
 LIB = ./libft/libft.a
+DIR_SRC = srcs
+DIR_OBJ = objectives
+INC = ./includes
 
 SRC = 
 
-SRC += lem-in.c
+SRC += lem_in.c
 SRC += bfs.c
 SRC += link_nodes.c
 SRC += read_data.c
 SRC += parse.c
+SRC += fill_nodes.c
 SRC += validation.c
 SRC += is_link.c
 SRC += exeptions.c
+SRC += exeptions2.c
+SRC += exeptions3.c
 SRC += del_data.c
 SRC += is_valid_room.c
-SRC += del_table.c
 SRC += is_valid_link.c
 SRC += get_path.c
 SRC += display_path.c
-SRC += del_graph.c
-SRC += del_path.c
+
+SRCS = $(addprefix $(DIR_SRC)/,$(SRC))
+OBJS = $(addprefix $(DIR_OBJ)/,$(SRC:.c=.o))
 
 all: get_lib $(NAME)
 
 get_lib:
 	@make -C $(LIBFT)
 
-$(NAME):
-	@$(C) $(FLAGS) -o $(NAME) $(SRC) $(LIB) -I $(LIBFT) 
+$(NAME): $(OBJS)
+	@$(C) $(FLAGS) -o $(NAME) $(OBJS) $(LIB) -I $(LIBFT) -I $(INC)
+
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
+	@mkdir -p $(DIR_OBJ)
+	@$(C) $(FLAGS) -c -I $(LIBFT) -I $(INC) -o $@ -c $<
+
 clean:
+	@rm -rf $(DIR_OBJ)
 	@make clean -C $(LIBFT)
 
 fclean: clean
