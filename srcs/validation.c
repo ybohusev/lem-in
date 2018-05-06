@@ -27,7 +27,8 @@ static	int		is_ants(t_data **data)
 	}
 	if (ft_atoi((*data)->str) <= 0)
 		return (NO_ANTS);
-	(*data) = (*data)->next;
+	if ((*data)->next)
+		(*data) = (*data)->next;
 	return (0);
 }
 
