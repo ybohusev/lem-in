@@ -29,6 +29,8 @@ static	int		is_ants(t_data **data)
 		return (NO_ANTS);
 	if ((*data)->next)
 		(*data) = (*data)->next;
+	else
+		return (NO_ROOMS);
 	return (0);
 }
 
@@ -56,9 +58,11 @@ static	int		is_rooms(t_data **data, t_data *tmp)
 	code = 0;
 	while (*data && !is_link((*data)->str))
 	{
-		if (!ft_strcmp((*data)->str, "##start"))
+		if (!ft_strcmp((*data)->str, "##start") &&
+			ft_strcmp((*data)->next->str, "##end"))
 			start++;
-		else if (!ft_strcmp((*data)->str, "##end"))
+		else if (!ft_strcmp((*data)->str, "##end") &&
+			ft_strcmp((*data)->next->str, "##start"))
 			end++;
 		else if ((*data)->str[0] != '#' &&
 				!(code = is_valid_room((*data)->str, tmp)))
@@ -107,7 +111,7 @@ extern	int		validation(t_data *data)
 		return (NO_DATA);
 	if ((err = is_ants(&data)))
 		return (err);
-	tmp = data->next;
+	tmp = data;
 	if ((err = is_rooms(&data, tmp)))
 		return (err);
 	if ((err = is_links(data, tmp)))

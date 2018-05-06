@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # include "../libft/libft.h"
+# include <stdio.h>
 
 # define WHITE 0
 # define GRAY 1

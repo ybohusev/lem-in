@@ -14,26 +14,25 @@
 
 static	void	invalid_coords(void)
 {
-	ft_putendl("\033[31mERROR:\033[37minvalid room coordinates!");
+	ft_putendl("\033[31mERROR:\033[39minvalid room coordinates!");
 	exit(0);
 }
 
 static	void	no_links(void)
 {
-	ft_putendl("\033[31mERROR:\033[37m ant's farm must has at least 1 link!");
-	system("leaks lem-in");
+	ft_putendl("\033[31mERROR:\033[39m ant's farm must has at least 1 link!");
 	exit(0);
 }
 
 static	void	invalid_link(void)
 {
-	ft_putendl("\033[34mWARNING:\033[37m invalid link definition!");
+	ft_putendl("\033[34mWARNING:\033[39m invalid link definition!");
 	ft_putendl("current and the following lines will be ignored");
 }
 
 static	void	no_path(void)
 {
-	ft_putstr("\033[31mERROR:\033[37m ant's farm ");
+	ft_putstr("\033[31mERROR:\033[39m ant's farm ");
 	ft_putendl("has no path from start to end!");
 	exit(0);
 }

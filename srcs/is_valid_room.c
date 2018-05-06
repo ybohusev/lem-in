@@ -51,7 +51,7 @@ static	int		check_name(char *name, t_data *data)
 		free_st_st(tmp);
 		data = data->next;
 	}
-	if (flag != 1)
+	if (flag > 1)
 		return (INVALID_ROOMS);
 	return (0);
 }
