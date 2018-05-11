@@ -88,6 +88,8 @@ void				exeptions(int err);
 int					is_valid_room(char *str, t_data *data);
 int					is_valid_link(t_data *data, t_data *tmp1);
 int					is_link(char *str);
+int					is_links(t_data *data, t_data *tmp);
+int					is_rooms(t_data **data, t_data *tmp);
 
 t_graph				parse(t_data *data);
 t_nodes				*fill_nodes(char *line, t_nodes *nodes, int mode, int ants);

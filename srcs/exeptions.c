@@ -39,6 +39,7 @@ static	void	no_path(void)
 
 extern	void	exeptions(int err)
 {
+	system("leaks lem-in");
 	if (err == NO_DATA)
 		no_data();
 	else if (err == EMPTY_LINE)

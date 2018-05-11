@@ -30,5 +30,6 @@ extern	int		main(void)
 	if ((err = get_path(graph.nodes, &path)))
 		exeptions(err);
 	display_path(path, data);
+	system("leaks lem-in");
 	return (0);
 }

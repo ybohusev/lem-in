@@ -42,6 +42,8 @@ SRC += is_valid_room.c
 SRC += is_valid_link.c
 SRC += get_path.c
 SRC += display_path.c
+SRC += is_links.c
+SRC += is_rooms.c
 
 SRCS = $(addprefix $(DIR_SRC)/,$(SRC))
 OBJS = $(addprefix $(DIR_OBJ)/,$(SRC:.c=.o))

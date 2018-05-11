@@ -17,6 +17,10 @@ static	int		is_ants(t_data **data)
 	char	*line;
 
 	line = (*data)->str;
+	if (*line == '+')
+		line++;
+	if (ft_strlen(line) > 10)
+		return (NO_ANTS);
 	if (!line || line[0] == 0)
 		return (EMPTY_LINE);
 	while (*line)
@@ -31,73 +35,6 @@ static	int		is_ants(t_data **data)
 		(*data) = (*data)->next;
 	else
 		return (NO_ROOMS);
-	return (0);
-}
-
-static	int		return_is_rooms(int rooms, int end, int start)
-{
-	if (rooms == 0 || rooms == 1)
-		return (NO_ROOMS);
-	if (end == 0 || end > 1)
-		return (INVALID_END);
-	if (start == 0 || start > 1)
-		return (INVALID_START);
-	return (0);
-}
-
-static	int		is_rooms(t_data **data, t_data *tmp)
-{
-	int		rooms;
-	int		start;
-	int		end;
-	int		code;
-
-	rooms = 0;
-	start = 0;
-	end = 0;
-	code = 0;
-	while (*data && !is_link((*data)->str))
-	{
-		if (!ft_strcmp((*data)->str, "##start") &&
-			ft_strcmp((*data)->next->str, "##end"))
-			start++;
-		else if (!ft_strcmp((*data)->str, "##end") &&
-			ft_strcmp((*data)->next->str, "##start"))
-			end++;
-		else if ((*data)->str[0] != '#' &&
-				!(code = is_valid_room((*data)->str, tmp)))
-			rooms++;
-		else if ((*data)->str[0] != '#')
-			return (code);
-		*data = (*data)->next;
-	}
-	return (return_is_rooms(rooms, end, start));
-}
-
-static	int		is_links(t_data *data, t_data *tmp)
-{
-	int		links;
-	char	hash;
-	int		err;
-
-	links = 0;
-	err = 0;
-	while (data)
-	{
-		hash = data->str[0];
-		if (hash != '#' && !is_valid_link(data, tmp))
-			links++;
-		else if (hash != '#' && (err = INVALID_LINK))
-			break ;
-		data = data->next;
-	}
-	if (links == 0)
-		return (NO_LINKS);
-	else if (err == INVALID_LINK)
-	{
-		data->is_err = 1;
-		return (err);
-	}
 	return (0);
 }
 
